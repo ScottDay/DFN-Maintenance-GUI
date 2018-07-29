@@ -1,9 +1,8 @@
 git:
-  submodules:
-    false
+  submodules: false
 
 # Add private repo SSH key and then clone submodules.
 before_install:
-  - echo -e "\n\nmachine github.com\n  $TRAVIS_CI_TOKEN\n" >~/.netrc
+  - sed -i 's/github/'"$TRAVIS_CI_TOKEN"'@github/g' .gitmodules
   - git submodule update --init --recursive
 
