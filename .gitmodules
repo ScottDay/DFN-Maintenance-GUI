@@ -4,3 +4,6 @@
 [submodule "DFN-Maintenance-GUI-Frontend"]
 	path = DFN-Maintenance-GUI-Frontend
 	url = https://github.com/ScottDay/DFN-Maintenance-GUI-Frontend.git
+[submodule "DFN-Maintenance-GUI-Config"]
+	path = DFN-Maintenance-GUI-Config
+	url = https://github.com/ScottDay/DFN-Maintenance-GUI-Config.git
