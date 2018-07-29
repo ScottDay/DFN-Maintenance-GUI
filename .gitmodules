@@ -1,3 +1,6 @@
 [submodule "DFN-Maintenance-GUI-Backend"]
 	path = DFN-Maintenance-GUI-Backend
 	url = https://github.com/ScottDay/DFN-Maintenance-GUI-Backend.git
+[submodule "DFN-Maintenance-GUI-Frontend"]
+	path = DFN-Maintenance-GUI-Frontend
+	url = https://github.com/ScottDay/DFN-Maintenance-GUI-Frontend.git
