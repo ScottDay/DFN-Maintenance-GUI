@@ -1,0 +1,9 @@
+git:
+  submodules:
+    false
+
+# Add private repo SSH key and then clone submodules.
+before_install:
+  - echo -e "\n\nmachine github.com\n  $Travis-Private-Deploy-Key\n" >~/.netrc
+  - git submodule update --init --recursive
+
