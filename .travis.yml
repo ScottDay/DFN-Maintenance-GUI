@@ -1,8 +1,23 @@
+# https://medium.com/mobileforgood/patterns-for-continuous-integration-with-docker-on-travis-ci-71857fff14c5
+sudo: required
+
 git:
   submodules: false
 
-# Add private repo SSH key and then clone submodules.
-before_install:
-  - sed -i 's/github/'"$TRAVIS_CI_TOKEN"'@github/g' .gitmodules
-  - git submodule update --init --recursive
+services: docker
 
+branches:
+  only: master
+
+notifications:
+  email: false
+
+install: .travis/install.sh
+
+before_script: .travis/before_script.sh
+
+script: .travis/script.sh
+
+after_script: .travis/after_script.sh
+
+deploy: .travis/deploy.sh
