@@ -5,7 +5,8 @@ set -o errexit
 
 docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 
-git add .env
+# Stage the updated version and submodules.
+git add .env DFN-Maintenance-GUI-Backend DFN-Maintenance-GUI-Frontend DFN-Maintenance-GUI-Config
 
 if [[ "$REQUEST_TYPE" == "release" ]]; then
     docker push $RELEASE_DOCKER_IMAGE_NAME

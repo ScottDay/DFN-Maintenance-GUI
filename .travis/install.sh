@@ -29,7 +29,9 @@ clone_submodules() {
 
     sed -i 's/github/'"$TRAVIS_CI_TOKEN"'@github/g' .gitmodules
 
-    if [[ "$REQUEST_TYPE" == "dev" ]]; then
+    if [[ "$REQUEST_TYPE" == "release" ]]; then
+        sed -i 's/develop/master/g' .gitmodules
+    elif [[ "$REQUEST_TYPE" == "dev" ]]; then    
         sed -i 's/master/develop/g' .gitmodules
     fi
 
