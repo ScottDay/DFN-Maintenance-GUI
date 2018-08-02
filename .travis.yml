@@ -22,4 +22,6 @@ script: .travis/script.sh
 
 after_script: .travis/after_script.sh
 
-deploy: .travis/deploy.sh
+deploy: 
+  provider: script
+  script: .travis/deploy.sh
