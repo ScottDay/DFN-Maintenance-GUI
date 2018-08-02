@@ -1,6 +1,8 @@
 # https://medium.com/mobileforgood/patterns-for-continuous-integration-with-docker-on-travis-ci-71857fff14c5
 sudo: required
 
+language: bash
+
 git:
   submodules: false
 
