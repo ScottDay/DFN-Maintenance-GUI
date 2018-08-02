@@ -16,7 +16,7 @@ notifications:
 
 install: .travis/install.sh
 
-before_script: .travis/before_script.sh
+before_script: source .travis/before_script.sh
 
 script: .travis/script.sh
 

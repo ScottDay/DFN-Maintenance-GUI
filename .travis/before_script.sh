@@ -14,5 +14,5 @@ fi
 
 export BUILD_DATE=$(date +%d-%m-%Y) # Current date.
 
-export RELEASE_DOCKER_IMAGE_NAME=prod:$RELEASE_VERSION.$BUILD_DATE # Name to give to the docker image / tag.
-export DEV_DOCKER_IMAGE_NAME=dev:$RELEASE_VERSION.$BUILD_DATE+$DEV_VERSION # Name to give to the docker image / tag.
+export RELEASE_DOCKER_IMAGE_NAME=$RELEASE_VERSION.$BUILD_DATE # Name to give to the docker image / tag.
+export DEV_DOCKER_IMAGE_NAME=$RELEASE_VERSION.$BUILD_DATE-dev.$DEV_VERSION # Name to give to the docker image / tag.
