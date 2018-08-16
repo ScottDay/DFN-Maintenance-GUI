@@ -27,6 +27,17 @@ clone_submodules() {
     Setting up git submodules.
     "
 
+    git config --global user.email "17160182@student.curtin.edu.au"
+    git config --global user.name "ScottDay"
+    git config --global push.default matching
+
+    # Get the credentials from a file
+    git config credential.helper "store --file=.git/credentials"
+
+    # This associates the API Key with the account
+    echo "https://${TRAVIS_CI_TOKEN}:@github.com" > .git/credentials
+
+
     sed -i 's/github/'"$TRAVIS_CI_TOKEN"'@github/g' .gitmodules
 
     if [[ "$REQUEST_TYPE" == "release" ]]; then

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Set an option to exit immediately if any error appears
+# Set an option to exit immediately if any error appears.
 set -o errexit
 
 source .env # Load up environment variables.

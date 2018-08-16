@@ -33,4 +33,5 @@ fi
 docker push scottydevil/dfn-maintenance-gui:$DEV_DOCKER_IMAGE_NAME
 
 # Push commit and tags.
-git push --follow-tags
+git push origin HEAD:$TRAVIS_BRANCH
+git push --tags

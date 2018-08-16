@@ -1,7 +1,10 @@
 # https://medium.com/mobileforgood/patterns-for-continuous-integration-with-docker-on-travis-ci-71857fff14c5
 sudo: required
 
-language: bash
+language: node_js
+
+node_js:
+  - 10
 
 git:
   submodules: false
@@ -24,4 +27,5 @@ after_script: .travis/after_script.sh
 
 deploy: 
   provider: script
+  skip_cleanup: true
   script: .travis/deploy.sh
