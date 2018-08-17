@@ -10,28 +10,27 @@ if [[ "$REQUEST_TYPE" == "release" ]]; then
     docker push scottydevil/dfn-maintenance-gui:latest
 
     # Commit the updated .env file.
-    git commit -m "v$RELEASE_VERSION $BUILD_DATE $BUILD_DATE"$'\n\n''[skip ci]' 
+    git commit -m "v$RELEASE_VERSION $BUILD_DATE latest"$'\n\n''[skip ci]' 
 
     # Tag the commit.
     git tag "v$RELEASE_VERSION"
 else
     # TODO: Remove dev docker images from docker hub.
     
-    # Push docker tags.
-    docker push scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION.$DEV_VERSION 
-    docker push scottydevil/dfn-maintenance-gui:dev
-
     # Remove old dev git tags from the last release.
-    git push origin --delete $(git tag -l "v*.*")
+    # git push origin --delete $(git tag -l "v*.*")
 
     # Commit the updated .env file.
-    git commit -m "v$RELEASE_VERSION.$DEV_VERSION $BUILD_DATE"$'\n\n''[skip ci]' 
+    git commit -m "v$RELEASE_VERSION.$DEV_VERSION $BUILD_DATE dev"$'\n\n''[skip ci]' 
 
     # Tag the commit.
     git tag "v$RELEASE_VERSION.$DEV_VERSION"
 fi
 
+# Push docker tags.
 docker push scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION 
+docker push scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION.$DEV_VERSION 
+docker push scottydevil/dfn-maintenance-gui:dev
 
 # Push commit and tags.
 git push origin HEAD:$TRAVIS_BRANCH
