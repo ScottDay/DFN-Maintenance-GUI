@@ -17,9 +17,9 @@ cp -r DFN-Maintenance-GUI-Frontend/dist build/dist
 
 # Docker build.
 if [[ "$REQUEST_TYPE" == "release" ]]; then
-    docker build -t scottydevil/dfn-maintenance-gui:$RELEASE_DOCKER_IMAGE_NAME .
+    docker build -t scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION -t scottydevil/dfn-maintenance-gui:latest .
 else
-    docker build -t scottydevil/dfn-maintenance-gui:$DEV_DOCKER_IMAGE_NAME .
+    docker build -t scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION -t scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION.$DEV_VERSION -t scottydevil/dfn-maintenance-gui:dev .
 fi
 
 rm -rf build
