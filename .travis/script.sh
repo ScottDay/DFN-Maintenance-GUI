@@ -19,7 +19,7 @@ if [[ "$REQUEST_TYPE" == "release" ]]; then
     cp -r DFN-Maintenance-GUI-Config/auth.db build/db/
 fi
 
-cp -r DFN-Maintenance-GUI-Config/dev.db build/db/
+cp -r DFN-Maintenance-GUI-Backend/db/dev.db build/db/
 
 # Docker build.
 if [[ "$REQUEST_TYPE" == "release" ]]; then
