@@ -8,7 +8,7 @@ source .env # Load up environment variables.
 if [[ "$REQUEST_TYPE" == "release" ]]; then
     export RELEASE_VERSION=$(($RELEASE_VERSION+1)) # Increment release version.
     export DEV_VERSION=$((0)) # Reset dev version.
-elif [[ "$REQUEST_TYPE" == "dev" ]]; then
+else
     export DEV_VERSION=$(($DEV_VERSION+1)) # Increment dev version.
 fi
 

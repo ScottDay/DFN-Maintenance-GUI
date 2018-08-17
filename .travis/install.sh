@@ -42,7 +42,7 @@ clone_submodules() {
 
     if [[ "$REQUEST_TYPE" == "release" ]]; then
         sed -i 's/develop/master/g' .gitmodules
-    elif [[ "$REQUEST_TYPE" == "dev" ]]; then    
+    else   
         sed -i 's/master/develop/g' .gitmodules
     fi
 

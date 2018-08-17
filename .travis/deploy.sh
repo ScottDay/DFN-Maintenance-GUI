@@ -16,12 +16,11 @@ if [[ "$REQUEST_TYPE" == "release" ]]; then
 
     # Tag the commit.
     git tag $RELEASE_DOCKER_IMAGE_NAME
-elif [[ "$REQUEST_TYPE" == "dev" ]]; then
-    # Remove dev docker images.
-    docker rmi $(docker images --filter=reference="*:dev:*" -q)
+else
+    # TODO: Remove dev docker images from docker hub.
     
     # Remove old dev git tags from the last release.
-    git push -d $(git tag -l "*+*")
+    # git push -d $(git tag -l "*+*")
 
     # Commit the updated .env file.
     git commit -m "[skip ci] $DEV_DOCKER_IMAGE_NAME"
