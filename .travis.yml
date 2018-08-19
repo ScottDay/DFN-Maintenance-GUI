@@ -17,15 +17,15 @@ branches:
 notifications:
   email: false
 
-install: .travis/install.sh
+install: . .travis/install.sh
 
-before_script: source .travis/before_script.sh
+before_script: . .travis/before_script.sh
 
-script: .travis/script.sh
+script: . .travis/script.sh
 
-after_script: .travis/after_script.sh
+after_script: . .travis/after_script.sh
 
 deploy: 
   provider: script
   skip_cleanup: true
-  script: .travis/deploy.sh
+  script: . .travis/deploy.sh
