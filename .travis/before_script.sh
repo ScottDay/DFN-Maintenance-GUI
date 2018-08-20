@@ -5,7 +5,7 @@ set -o errexit
 
 source .env # Load up environment variables.
 
-if [[ "$REQUEST_TYPE" == "release" ]]; then
+if [ "$REQUEST_TYPE" = "release" ]; then
     export RELEASE_VERSION=$(($RELEASE_VERSION+1)) # Increment release version.
     export DEV_VERSION=$((0)) # Reset dev version.
 else

@@ -18,7 +18,7 @@ docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
 # Stage the updated version and submodules.
 git add .env DFN-Maintenance-GUI-Frontend DFN-Maintenance-GUI-Backend DFN-Maintenance-GUI-Config
 
-if [[ "$REQUEST_TYPE" == "release" ]]; then
+if [ "$REQUEST_TYPE" = "release" ]; then
     # Remove dev docker images from docker hub.
     ./curl_docker_tags.sh scottydevil/dfn-maintenance-gui v$RELEASE_VERSION. > tags.txt
 

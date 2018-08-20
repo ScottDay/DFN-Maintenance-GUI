@@ -15,14 +15,14 @@ cp -r DFN-Maintenance-GUI-Backend/src build/src
 cp -r DFN-Maintenance-GUI-Frontend/dist build/dist
 
 # Copy database.
-if [[ "$REQUEST_TYPE" == "release" ]]; then
+if [ "$REQUEST_TYPE" = "release" ]; then
     cp -r DFN-Maintenance-GUI-Config/auth.db build/db/
 fi
 
 cp -r DFN-Maintenance-GUI-Backend/db/dev.db build/db/
 
 # Docker build.
-if [[ "$REQUEST_TYPE" == "release" ]]; then
+if [ "$REQUEST_TYPE" = "release" ]; then
     docker build -t scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION -t scottydevil/dfn-maintenance-gui:latest .
 fi
 
