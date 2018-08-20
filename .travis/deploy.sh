@@ -1,27 +1,45 @@
 #!/bin/bash
 
+delete_from_docker_by_tag() {
+    registry='scottydevil'
+    name='dfn-maintenance-gui'
+    auth="-u $DOCKER_HUB_USERNAME:$DOCKER_HUB_PASSWORD"
+    tag="$1"
+    curl $auth -X DELETE -sI -k "https://${registry}/v2/${name}/manifests/$(
+        curl $auth -sI -k \
+            -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
+            "https://${registry}/v2/${name}/manifests/${tag}" \
+            | tr -d '\r' | sed -En 's/^Docker-Content-Digest: (.*)/\1/pi'
+    )"
+}
+
 docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
 
 # Stage the updated version and submodules.
 git add .env DFN-Maintenance-GUI-Frontend DFN-Maintenance-GUI-Backend DFN-Maintenance-GUI-Config
 
 if [[ "$REQUEST_TYPE" == "release" ]]; then
+    # Remove dev docker images from docker hub.
+    ./curl_docker_tags.sh scottydevil/dfn-maintenance-gui v$RELEASE_VERSION. > tags.txt
+
+    for tag in `cat tags.txt`; do
+        delete_from_docker_by_tag $tag
+    done
+
+    # Remove old dev git tags from the last release.
+    git push origin --delete $(git tag -l "v*.*")
+
     # Push docker tags.
     docker push scottydevil/dfn-maintenance-gui:latest
 
     # Commit the updated .env file.
-    git commit -m "v$RELEASE_VERSION $BUILD_DATE latest"$'\n\n''[skip ci]' 
+    git commit -m "v$RELEASE_VERSION $BUILD_DATE latest" -m '[skip ci]' 
 
     # Tag the commit.
     git tag "v$RELEASE_VERSION"
 else
-    # TODO: Remove dev docker images from docker hub.
-    
-    # Remove old dev git tags from the last release.
-    # git push origin --delete $(git tag -l "v*.*")
-
     # Commit the updated .env file.
-    git commit -m "v$RELEASE_VERSION.$DEV_VERSION $BUILD_DATE dev"$'\n\n''[skip ci]' 
+    git commit -m "v$RELEASE_VERSION.$DEV_VERSION $BUILD_DATE dev" -m '[skip ci]' 
 
     # Tag the commit.
     git tag "v$RELEASE_VERSION.$DEV_VERSION"
