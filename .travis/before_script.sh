@@ -14,3 +14,7 @@ else
 fi
 
 export BUILD_DATE=$(date +%d-%m-%Y) # Current date.
+
+echo "RELEASE_VERSION: ${RELEASE_VERSION}"
+echo "DEV_VERSION: ${DEV_VERSION}"
+echo "BUILD_DATE: ${BUILD_DATE}"

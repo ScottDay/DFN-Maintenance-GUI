@@ -7,7 +7,7 @@ git submodule update --init --recursive --remote --merge DFN-Maintenance-GUI-Fro
 git submodule update --init --recursive --remote --merge DFN-Maintenance-GUI-Backend
 
 # Build the source.
-cd DFN-Maintenance-GUI-Frontend; npm install; npm run build; rm -rf node_modules; cd ..
+cd DFN-Maintenance-GUI-Frontend; npm install; npm run build; cd ..
 
 # Copy the source over.
 mkdir build

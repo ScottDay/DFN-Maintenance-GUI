@@ -13,7 +13,13 @@ delete_from_docker_by_tag() {
     )"
 }
 
+# Login to DockerHub.
 docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
+
+# Persist environment variables.
+sed -i -e "s/RELEASE_VERSION=.*/RELEASE_VERSION=${RELEASE_VERSION}/" .env
+sed -i -e "s/DEV_VERSION=.*/DEV_VERSION=${DEV_VERSION}/" .env
+sed -i -e "s/BUILD_DATE=.*/BUILD_DATE=${BUILD_DATE}/" .env
 
 # Stage the updated version and submodules.
 git add .env DFN-Maintenance-GUI-Frontend DFN-Maintenance-GUI-Backend DFN-Maintenance-GUI-Config
