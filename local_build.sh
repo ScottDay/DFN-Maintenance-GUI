@@ -15,6 +15,7 @@ mkdir build/db
 cp -r DFN-Maintenance-GUI-Backend/main.py build/
 cp -r DFN-Maintenance-GUI-Backend/requirements/prod.txt build/requirements.txt
 cp -r DFN-Maintenance-GUI-Backend/src build/src
+cp -r DFN-Maintenance-GUI-Backend/config build/config
 cp -r DFN-Maintenance-GUI-Frontend/dist build/dist
 
 # Create and Copy the database.

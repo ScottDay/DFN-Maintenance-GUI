@@ -12,11 +12,13 @@ mkdir build/db
 cp -r DFN-Maintenance-GUI-Backend/main.py build/
 cp -r DFN-Maintenance-GUI-Backend/requirements/prod.txt build/requirements.txt
 cp -r DFN-Maintenance-GUI-Backend/src build/src
+cp -r DFN-Maintenance-GUI-Backend/config build/config
 cp -r DFN-Maintenance-GUI-Frontend/dist build/dist
 
 # Copy database.
 if [ "$REQUEST_TYPE" = "release" ]; then
     cp -r DFN-Maintenance-GUI-Config/auth.db build/db/
+    cp -r DFN-Maintenance-GUI-Config/prod_config.py build/config/
 fi
 
 cp -r DFN-Maintenance-GUI-Backend/db/dev.db build/db/
