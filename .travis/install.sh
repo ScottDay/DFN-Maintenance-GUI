@@ -10,6 +10,7 @@ set -o errexit
 main() {
     clone_submodules
     update_docker_configuration
+    install_dependencies
 
     echo "SUCCESS:
     Done! Finished setting up the Travis machine.
@@ -65,6 +66,10 @@ update_docker_configuration() {
     "max-concurrent-uploads": 50
     }' | sudo tee /etc/docker/daemon.json
     sudo service docker restart
+}
+
+install_dependencies() {
+    sudo apt-get install jq
 }
 
 main
