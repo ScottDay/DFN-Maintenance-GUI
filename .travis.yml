@@ -24,6 +24,11 @@ before_script: . .travis/before_script.sh
 script: . .travis/script.sh
 
 deploy: 
-  provider: script
-  skip_cleanup: true
-  script: . .travis/deploy.sh
+  - provider: script
+    skip_cleanup: true
+    script: . .travis/deploy.sh
+  - provider: releases
+    api_key: "${GH_TOKEN}"
+    skip_cleanup: true
+    file_glob: true
+    file: build/**/*
