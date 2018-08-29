@@ -1,10 +1,11 @@
 # https://medium.com/mobileforgood/patterns-for-continuous-integration-with-docker-on-travis-ci-71857fff14c5
+
+# Config
 sudo: required
 
 language: node_js
 
-node_js:
-  - 10
+node_js: 10
 
 git:
   submodules: false
@@ -17,19 +18,31 @@ branches:
 notifications:
   email: false
 
+# Install
 install: . .travis/install.sh
 
+# Script
 before_script: . .travis/before_script.sh
-
 script: . .travis/script.sh
+
+
+# Deploy
+before_deploy: . .travis/before_deploy.sh
 
 deploy: 
   - provider: script
     skip_cleanup: true
     script: . .travis/deploy.sh
+
   - provider: releases
     api_key: "$GH_TOKEN"
     skip_cleanup: true
     file_glob: true
     file: build/**/*
-    body: "$RELEASE_BODY"
+    on:
+      condition: "$REQUEST_TYPE == 'release'"
+
+# TODO: Put body in releases provider.
+# body: "$RELEASE_BODY"
+
+after_deploy: . .travis/after_deploy.sh
