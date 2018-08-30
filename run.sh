@@ -34,13 +34,25 @@ esac
 eok "Sourced build target script: $target"
 
 ## Setup.
-esection "Setup"
-setup
+if [ $skip_setup_stage -eq 0 ]; then
+    einfo "Skipping Setup Stage"
+else
+    esection "Setup Stage"
+    setup
+fi
 
 ## Build.
-esection "Build"
-build
+if [ $skip_build_stage -eq 0 ]; then
+    einfo "Skipping Build Stage"
+else
+    esection "Build Stage"
+    build
+fi
 
 ## Run.
-esection "Run"
-run
+if [ $skip_run_stage -eq 0 ]; then
+    einfo "Skipping Run Stage"
+else
+    esection "Run Stage"
+    run
+fi

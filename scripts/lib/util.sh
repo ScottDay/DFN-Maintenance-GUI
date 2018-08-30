@@ -14,17 +14,21 @@ exec() {
 
 
 trapper() {
-    echo
-    
     case "$@" in
         0)
-            echo "Success!"
+            eok "No errors encountered!"
             ;;
         *)
-            echo "Fatal error during execution! Resetting changes and exiting..."
-            git reset --hard head
+            ecrit "Fatal error during execution!"
+            
+            if [ $clean -eq 0 ]; then
+                einfo "Resetting local changes..."
+                exec git reset --hard HEAD
+            fi            
             ;;
     esac
+
+    einfo "Exiting..."
 
     exit $@
 }
