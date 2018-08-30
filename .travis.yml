@@ -25,7 +25,6 @@ install: . .travis/install.sh
 before_script: . .travis/before_script.sh
 script: . .travis/script.sh
 
-
 # Deploy
 before_deploy: . .travis/before_deploy.sh
 
@@ -41,8 +40,5 @@ deploy:
     file: build/**/*
     on:
       condition: "$REQUEST_TYPE == 'release'"
-
-# TODO: Put body in releases provider.
-# body: "$RELEASE_BODY"
 
 after_deploy: . .travis/after_deploy.sh

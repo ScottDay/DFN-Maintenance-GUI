@@ -39,13 +39,13 @@ if [ "$REQUEST_TYPE" = "release" ]; then
     docker push scottydevil/dfn-maintenance-gui:latest
 
     # Commit the updated .env file.
-    git commit -m "v$RELEASE_VERSION $BUILD_DATE latest" -m '[skip ci]' 
+    git commit -m "v$RELEASE_VERSION" -m '[skip ci]' 
 
     # Tag the commit.
     git tag "v$RELEASE_VERSION"
 else
     # Commit the updated .env file.
-    git commit -m "v$RELEASE_VERSION.$DEV_VERSION $BUILD_DATE dev" -m '[skip ci]' 
+    git commit -m "v$RELEASE_VERSION.$DEV_VERSION" -m '[skip ci]' 
 
     # Tag the commit.
     git tag "v$RELEASE_VERSION.$DEV_VERSION"
