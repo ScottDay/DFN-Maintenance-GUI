@@ -8,6 +8,11 @@
 	url = https://github.com/ScottDay/DFN-Maintenance-GUI-Frontend.git
 	branch = master
 	ignore = dirty
+[submodule "DFN-Maintenance-GUI-Installer"]
+	path = DFN-Maintenance-GUI-Installer
+	url = https://github.com/ScottDay/DFN-Maintenance-GUI-Installer.git
+	branch = master
+	ignore = dirty
 [submodule "DFN-Maintenance-GUI-Config"]
 	path = DFN-Maintenance-GUI-Config
 	url = https://github.com/ScottDay/DFN-Maintenance-GUI-Config.git

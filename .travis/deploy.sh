@@ -29,7 +29,7 @@ echo "$(jq \
 )" > env.json
 
 # Stage the updated version and submodules.
-git add env.json DFN-Maintenance-GUI-Frontend DFN-Maintenance-GUI-Backend DFN-Maintenance-GUI-Config
+git add env.json DFN-Maintenance-GUI-Frontend DFN-Maintenance-GUI-Backend DFN-Maintenance-GUI-Installer DFN-Maintenance-GUI-Config
 
 if [ "$REQUEST_TYPE" = "release" ]; then
     # Remove dev docker images from docker hub.
