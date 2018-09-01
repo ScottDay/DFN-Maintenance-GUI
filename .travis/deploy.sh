@@ -39,15 +39,16 @@ if [ "$REQUEST_TYPE" = "release" ]; then
         delete_from_docker_by_tag $tag
     done
 
-    # Remove old dev git tags from the last release.
-    git push origin --delete $(git tag -l "v*.*")
-
     # Push docker tags.
     docker push scottydevil/dfn-maintenance-gui:latest
 
     # Commit the updated env.json file.
     git commit -m "v$RELEASE_VERSION" -m '[skip ci]' 
 
+    # Remove old dev git tags from the last release.
+    git tag --delete $(git tag -l "v*.*")
+    git push origin --delete $(git tag -l "v*.*")
+    
     # Tag the commit.
     git tag "v$RELEASE_VERSION"
 else
