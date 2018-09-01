@@ -3,7 +3,9 @@
 # Set an option to exit immediately if any error appears.
 set -o errexit
 
-source .env # Load up environment variables.
+# Load up environment variables.
+RELEASE_VERSION="$(cat env.json | jq -r '.version.release')"
+DEV_VERSION="$(cat env.json | jq -r '.version.dev')"
 
 if [ "$REQUEST_TYPE" = "release" ]; then
     export RELEASE_VERSION=$(($RELEASE_VERSION+1)) # Increment release version.

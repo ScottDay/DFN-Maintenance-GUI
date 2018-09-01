@@ -17,12 +17,19 @@ delete_from_docker_by_tag() {
 docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
 
 # Persist environment variables.
-sed -i -e "s/RELEASE_VERSION=.*/RELEASE_VERSION=${RELEASE_VERSION}/" .env
-sed -i -e "s/DEV_VERSION=.*/DEV_VERSION=${DEV_VERSION}/" .env
-sed -i -e "s/BUILD_DATE=.*/BUILD_DATE=${BUILD_DATE}/" .env
+echo "$(jq \
+    --tab \
+    --arg release $RELEASE_VERSION \
+    --arg dev $DEV_VERSION \
+    --arg build $BUILD_DATE \
+    '.version.release = $release 
+        | .version.dev = $dev 
+        | .buildDate = $build' \
+    env.json
+)" > env.json
 
 # Stage the updated version and submodules.
-git add .env DFN-Maintenance-GUI-Frontend DFN-Maintenance-GUI-Backend DFN-Maintenance-GUI-Config
+git add env.json DFN-Maintenance-GUI-Frontend DFN-Maintenance-GUI-Backend DFN-Maintenance-GUI-Config
 
 if [ "$REQUEST_TYPE" = "release" ]; then
     # Remove dev docker images from docker hub.
@@ -38,7 +45,7 @@ if [ "$REQUEST_TYPE" = "release" ]; then
     # Push docker tags.
     docker push scottydevil/dfn-maintenance-gui:latest
 
-    # Commit the updated .env file.
+    # Commit the updated env.json file.
     git commit -m "v$RELEASE_VERSION" -m '[skip ci]' 
 
     # Tag the commit.
