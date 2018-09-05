@@ -19,19 +19,19 @@ notifications:
   email: false
 
 # Install
-install: . .travis/install.sh
+install: . .travis/install/install.sh
 
 # Script
-before_script: . .travis/before_script.sh
-script: . .travis/script.sh
+before_script: . .travis/script/before_script.sh
+script: . .travis/script/script.sh
 
 # Deploy
-before_deploy: . .travis/before_deploy.sh
+before_deploy: . .travis/deploy/before_deploy.sh
 
 deploy: 
   - provider: script
     skip_cleanup: true
-    script: . .travis/deploy.sh
+    script: . .travis/deploy/deploy.sh
 
   - provider: releases
     api_key: "$GH_TOKEN"
@@ -43,4 +43,4 @@ deploy:
     on:
       condition: "$REQUEST_TYPE == 'release'"
 
-after_deploy: . .travis/after_deploy.sh
+after_deploy: . .travis/deploy/after_deploy.sh
