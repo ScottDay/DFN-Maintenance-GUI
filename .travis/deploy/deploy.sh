@@ -33,7 +33,7 @@ git add env.json DFN-Maintenance-GUI-Frontend DFN-Maintenance-GUI-Backend DFN-Ma
 
 if [ "$REQUEST_TYPE" = "release" ]; then
     # Remove dev docker images from docker hub.
-    ./curl_docker_tags.sh scottydevil/dfn-maintenance-gui v$RELEASE_VERSION. > tags.txt
+    ./.travis/deploy/curl_docker_tags.sh scottydevil/dfn-maintenance-gui v$RELEASE_VERSION. > tags.txt
 
     for tag in `cat tags.txt`; do
         delete_from_docker_by_tag $tag

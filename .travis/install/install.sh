@@ -37,7 +37,6 @@ clone_submodules() {
     # This associates the API Key with the account
     echo "https://${TRAVIS_CI_TOKEN}:@github.com" > .git/credentials
 
-
     sed -i 's/github/'"$TRAVIS_CI_TOKEN"'@github/g' .gitmodules
 
     if [ "$REQUEST_TYPE" = "release" ]; then

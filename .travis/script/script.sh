@@ -29,5 +29,3 @@ if [ "$REQUEST_TYPE" = "release" ]; then
 fi
 
 docker build --squash --compress -f .docker/Dockerfile -t scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION -t scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION.$DEV_VERSION -t scottydevil/dfn-maintenance-gui:dev .
-
-rm -rf build
