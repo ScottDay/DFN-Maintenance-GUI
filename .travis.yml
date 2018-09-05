@@ -7,6 +7,10 @@ language: node_js
 
 node_js: 10
 
+cache:
+  directories: 
+    - $HOME/.npm
+
 git:
   submodules: false
 
@@ -39,4 +43,8 @@ deploy:
     on:
       condition: "$REQUEST_TYPE == 'release'"
 
-after_deploy: . .travis/deploy/after_deploy.sh
+  - provider: script
+    skip_cleanup: true
+    script: . .travis/deploy/after_deploy.sh
+    on:
+      condition: "$REQUEST_TYPE == 'release'"
