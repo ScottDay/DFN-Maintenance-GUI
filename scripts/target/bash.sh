@@ -30,7 +30,7 @@ build() {
     
     exec mkdir -p build
     exec mkdir -p build/db
-    exec cp -r DFN-Maintenance-GUI-Backend/main.py build/
+    exec cp -r DFN-Maintenance-GUI-Backend/gui.py build/
     exec cp -r DFN-Maintenance-GUI-Backend/requirements/prod.txt build/requirements.txt
     exec cp -r DFN-Maintenance-GUI-Backend/src build/src
     exec cp -r DFN-Maintenance-GUI-Backend/config build/config
@@ -40,8 +40,8 @@ build() {
 
 
 run() {
-    # Run docker container.
+    # Run backend through Python.
     einfo "Running Flask backend"
     cd build
-    exec python3 main.py prod
+    exec gui.py --dev
 }
