@@ -30,8 +30,6 @@ before_script: . .travis/script/before_script.sh
 script: . .travis/script/script.sh
 
 # Deploy
-before_deploy: . .travis/deploy/before_deploy.sh
-
 deploy: 
   - provider: script
     skip_cleanup: true

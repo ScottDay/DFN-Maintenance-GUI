@@ -17,6 +17,14 @@ fi
 
 export BUILD_DATE=$(date +%d-%m-%Y) # Current date.
 
+# Setup release body message.
+frontend=$(curl -s -H "Authorization: token ${GH_TOKEN}" "https://api.github.com/repos/ScottDay/DFN-Maintenance-GUI-Frontend/releases/latest" | jq -r '.body' | cut -c 3- | (printf "# Frontend " && cat))
+backend=$(curl -s -H "Authorization: token ${GH_TOKEN}" "https://api.github.com/repos/ScottDay/DFN-Maintenance-GUI-Backend/releases/latest" | jq -r '.body' | cut -c 3- | (printf "# Backend " && cat))
+installer=$(curl -s -H "Authorization: token ${GH_TOKEN}" "https://api.github.com/repos/ScottDay/DFN-Maintenance-GUI-Installer/releases/latest" | jq -r '.body' | cut -c 3- | (printf "# Installer " && cat))
+
+export RELEASE_TAG="v$RELEASE_VERSION"
+export RELEASE_BODY="$frontend\n$backend\n$installer"
+
 echo "RELEASE_VERSION: ${RELEASE_VERSION}"
 echo "DEV_VERSION: ${DEV_VERSION}"
 echo "BUILD_DATE: ${BUILD_DATE}"
