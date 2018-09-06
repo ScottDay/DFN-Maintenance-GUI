@@ -9,7 +9,7 @@ set -o errexit
 # via function invocations.
 main() {
     clone_submodules
-    update_docker_configuration
+    #update_docker_configuration
 
     echo "SUCCESS:
     Done! Finished setting up the Travis machine.

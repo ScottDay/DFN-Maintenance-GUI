@@ -1,20 +1,20 @@
 #!/bin/bash
 
-delete_from_docker_by_tag() {
-    registry='scottydevil'
-    name='dfn-maintenance-gui'
-    auth="-u $DOCKER_HUB_USERNAME:$DOCKER_HUB_PASSWORD"
-    tag="$1"
-    curl $auth -X DELETE -sI -k "https://${registry}/v2/${name}/manifests/$(
-        curl $auth -sI -k \
-            -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
-            "https://${registry}/v2/${name}/manifests/${tag}" \
-            | tr -d '\r' | sed -En 's/^Docker-Content-Digest: (.*)/\1/pi'
-    )"
-}
+#delete_from_docker_by_tag() {
+#    registry='scottydevil'
+#    name='dfn-maintenance-gui'
+#    auth="-u $DOCKER_HUB_USERNAME:$DOCKER_HUB_PASSWORD"
+#    tag="$1"
+#    curl $auth -X DELETE -sI -k "https://${registry}/v2/${name}/manifests/$(
+#        curl $auth -sI -k \
+#            -H "Accept: application/vnd.docker.distribution.manifest.v2+json" \
+#            "https://${registry}/v2/${name}/manifests/${tag}" \
+#            | tr -d '\r' | sed -En 's/^Docker-Content-Digest: (.*)/\1/pi'
+#    )"
+#}
 
 # Login to DockerHub.
-docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
+#docker login -u $DOCKER_HUB_USERNAME -p $DOCKER_HUB_PASSWORD
 
 # Persist environment variables.
 echo "$(jq \
@@ -33,14 +33,14 @@ git add env.json DFN-Maintenance-GUI-Frontend DFN-Maintenance-GUI-Backend DFN-Ma
 
 if [ "$REQUEST_TYPE" = "release" ]; then
     # Remove dev docker images from docker hub.
-    ./.travis/deploy/curl_docker_tags.sh scottydevil/dfn-maintenance-gui v$RELEASE_VERSION. > tags.txt
+    #./.travis/deploy/curl_docker_tags.sh scottydevil/dfn-maintenance-gui v$RELEASE_VERSION. > tags.txt
 
-    for tag in `cat tags.txt`; do
-        delete_from_docker_by_tag $tag
-    done
+    #for tag in `cat tags.txt`; do
+    #    delete_from_docker_by_tag $tag
+    #done
 
     # Push docker tags.
-    docker push scottydevil/dfn-maintenance-gui:latest
+    #docker push scottydevil/dfn-maintenance-gui:latest
 
     # Commit the updated env.json file.
     git commit -m "v$RELEASE_VERSION" -m '[skip ci]' 
@@ -60,9 +60,9 @@ else
 fi
 
 # Push docker tags.
-docker push scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION 
-docker push scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION.$DEV_VERSION 
-docker push scottydevil/dfn-maintenance-gui:dev
+#docker push scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION 
+#docker push scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION.$DEV_VERSION 
+#docker push scottydevil/dfn-maintenance-gui:dev
 
 # Push commit and tags.
 git push origin HEAD:$TRAVIS_BRANCH

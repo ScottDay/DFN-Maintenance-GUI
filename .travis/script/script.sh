@@ -24,8 +24,8 @@ fi
 cp -r DFN-Maintenance-GUI-Backend/db/dev.db build/db/
 
 # Docker build.
-if [ "$REQUEST_TYPE" = "release" ]; then
-    docker build --squash --compress -t scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION -t scottydevil/dfn-maintenance-gui:latest .
-fi
+#if [ "$REQUEST_TYPE" = "release" ]; then
+#    docker build --squash --compress -t scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION -t scottydevil/dfn-maintenance-gui:latest .
+#fi
 
-docker build --squash --compress -f .docker/Dockerfile -t scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION -t scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION.$DEV_VERSION -t scottydevil/dfn-maintenance-gui:dev .
+#docker build --squash --compress -f .docker/Dockerfile -t scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION -t scottydevil/dfn-maintenance-gui:v$RELEASE_VERSION.$DEV_VERSION -t scottydevil/dfn-maintenance-gui:dev .
